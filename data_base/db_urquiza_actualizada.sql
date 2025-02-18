@@ -9,7 +9,8 @@ CREATE TABLE pre_inscripcion (
     Apellido VARCHAR(45) NOT NULL,
     Documento INT(20) NOT NULL,
     Domicilio VARCHAR(45),
-	Email VARCHAR(45)
+	Email VARCHAR(45),
+	carrera VARCHAR(255) NOT NULL;
 );
 
 CREATE TABLE Alumnos (
@@ -18,7 +19,8 @@ CREATE TABLE Alumnos (
     Apellido VARCHAR(45) NOT NULL,
 	Documento INT(20) NOT NULL,
     Domicilio VARCHAR(45),
-	Email VARCHAR(45)
+	Email VARCHAR(45),
+	carrera VARCHAR(255) NOT NULL;
 );
 
 CREATE TABLE Docentes (
@@ -122,7 +124,13 @@ CREATE TABLE inscripciones (
     FOREIGN KEY (materia_id) REFERENCES Materias(id)  -- Asegúrate de usar 'id'
 );
 
+CREATE TABLE configuracion (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clave VARCHAR(50) UNIQUE NOT NULL,
+    valor INT NOT NULL
+);
 
+INSERT INTO configuracion (clave, valor) VALUES ('max_inscripciones', 100); -- 100 es el valor por defecto, se puede moficiar
 
 INSERT INTO carreras (nombre) VALUES 
     ('Analista Funcional'), 
